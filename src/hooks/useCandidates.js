@@ -21,5 +21,5 @@ export default function useCandidates() {
     fetchCandidates();
   }, []);
 
-  return { candidates, loading, error };
+  return [candidates, loading, error];
 }

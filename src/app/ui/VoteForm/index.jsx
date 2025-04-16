@@ -3,7 +3,7 @@ import styles from './VoteForm.module.css';
 import useCandidates from '@/hooks/useCandidates';
 
 export default function VoteForm() {
-  const { candidates, candidateLoading, candidateError } = useCandidates();
+  const [ candidates, candidateLoading, candidateError ] = useCandidates();
 
   return (
     <form className={styles.form}>
@@ -36,10 +36,8 @@ export default function VoteForm() {
           disabled={candidateLoading || candidateError}
         />
         <datalist id="candidate-list">
-          {loading && <option value="Loading..." />}
-          {error && <option value="Error loading candidates" />}
-          {!loading &&
-            !error &&
+          {!candidateLoading &&
+            !candidateError &&
             candidates.map((candidate) => (
               <option key={candidate.voter_id} value={candidate.name} />
             ))}
