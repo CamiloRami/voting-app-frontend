@@ -6,6 +6,6 @@ export const getCandidates = async () => {
     const data = await apiFetching({ endpoint: BASE_ENDPOINT });
     return data;
   } catch (error) {
-    console.error('Error fetching candidates:', error);
+    throw new Error('Error fetching candidates:', error.message);
   }
 }

@@ -6,7 +6,7 @@ export const getVoters = async () => {
     const data = await apiFetching({ endpoint: BASE_ENDPOINT });
     return data;
   } catch (error) {
-    console.error('Error fetching voters:', error);
+    throw new Error('Error fetching voters:', error.message);
   }
 }
 
@@ -15,6 +15,6 @@ export const getVoter = async (voterDocument) => {
     const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}/${voterDocument}` });
     return data;
   } catch (error) {
-    console.error('Error fetching voter:', error);
+    throw new Error('Error fetching voter:', error.message);
   }
 }

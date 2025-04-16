@@ -3,6 +3,7 @@ import styles from './VoteForm.module.css';
 import useCandidates from '@/hooks/useCandidates';
 import { getVoter } from '@/services/voter';
 import { castVote } from '@/services/vote';
+import { toast } from 'react-toastify';
 
 export default function VoteForm() {
   const [ candidates, candidateLoading, candidateError ] = useCandidates();
@@ -17,7 +18,7 @@ export default function VoteForm() {
       const voter = await getVoter(document);
 
       if (!voter) {
-        alert('Voter not found. Please check your document.');
+        toast.error('Voter not found. Please check your document.');
         return;
       }
       
@@ -27,21 +28,19 @@ export default function VoteForm() {
         (candidate) => `${candidate.name} ${candidate.lastName}` === candidateValue
       );
       if (!selectedCandidate) {
-        alert('Please select a valid candidate.');
+        toast.error('Please select a valid candidate.');
         return;
       }
       const candidateId = selectedCandidate.voter_id;
       const response = await castVote({ voterId, candidateId })
 
       if (!response) {
-        alert('Error casting vote. Please try again.');
+        toast.error('Error casting vote. Please try again.');
         return;
       }
-      console.log('Vote submitted:', response);
-      alert('Vote submitted successfully!');
+      toast.success('Vote submitted successfully!');
     } catch (error) {
-      console.error(error);
-      alert('An error occurred while submitting your vote.');
+      toast.error('An error occurred while submitting your vote.');
     }
   }
 

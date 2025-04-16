@@ -15,6 +15,6 @@ export const castVote = async ({voterId, candidateId}) => {
     });
     return data;
   } catch (error) {
-    console.error('Error casting vote:', error);
+    throw new Error('Error casting vote:', error.message);
   }
 }

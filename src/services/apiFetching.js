@@ -9,6 +9,6 @@ export const apiFetching = async ({endpoint, options}) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching voters:', error);
+    throw new Error(error.message);
   }
 }
