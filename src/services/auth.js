@@ -1,0 +1,31 @@
+import { apiFetching } from "./apiFetching";
+const BASE_ENDPOINT = 'auth';
+
+export const login = async ({ email, password }) => {
+  try {
+    const data = await apiFetching({
+      endpoint: `${BASE_ENDPOINT}/login`,
+      options: {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Error during login:', error.message);
+  }
+}
+
+export const checkAuth = async () => {
+  try {
+    const data = await apiFetching({
+      endpoint: `${BASE_ENDPOINT}/check-auth`,
+      options: {
+        credentials: 'include',
+      },
+    });
+    return data;
+  } catch (error) {
+    return null;
+  }
+}
