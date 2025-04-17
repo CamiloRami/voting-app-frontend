@@ -1,12 +1,15 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import styles from './admin.module.css';
 import { AdminProvider } from '@/contexts/AdminContext';
 import { ToastContainer } from 'react-toastify';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     { href: '/admin', label: 'Home' },
@@ -14,6 +17,14 @@ export default function AdminLayout({ children }) {
     { href: '/admin/votes', label: 'List Submitted Votes' },
     { href: '/admin/new-voter', label: 'Add New Voter' },
   ];
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   if (pathname === '/admin/login') {
     return (
@@ -39,8 +50,17 @@ export default function AdminLayout({ children }) {
         pauseOnHover
         theme="light"
       />
-      <nav className={styles.sidebar}>
-        <div className={styles.sidebarTitle}>Admin Panel</div>
+      <button 
+        className={`${styles.menuButton} ${isMenuOpen ? styles.open : ''}`}
+        onClick={toggleMenu}
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+      >
+        {isMenuOpen ? <FiX /> : <FiMenu />}
+      </button>
+      <nav className={`${styles.sidebar} ${isMenuOpen ? styles.open : ''}`}>
+        <div className={styles.sidebarTitle}>
+          Admin Panel
+        </div>
         <ul className={styles.nav}>
           {menuItems.map((item) => (
             <li key={item.href}>
@@ -49,6 +69,7 @@ export default function AdminLayout({ children }) {
                 className={`${styles.navLink} ${
                   pathname === item.href ? styles.activeLink : ''
                 }`}
+                onClick={closeMenu}
               >
                 {item.label}
               </Link>
