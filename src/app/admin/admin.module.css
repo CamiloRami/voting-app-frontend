@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 256px;
+  background-color: var(--input-background);
+  color: var(--foreground);
+  padding: 1rem;
+  border-right: 1px solid var(--border);
+}
+
+.sidebarTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navLink {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.navLink:hover {
+  background-color: var(--button-primary);
+  color: #fff;
+}
+
+.activeLink {
+  background-color: var(--button-primary);
+  color: #fff;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--background);
+}
