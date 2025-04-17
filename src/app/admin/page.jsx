@@ -48,15 +48,22 @@ export default function AdminHome() {
 
   return (
     <div className={styles.container}>
-      <ToastContainer />
       <div className={styles.header}>
         <h1 className={styles.title}>Welcome: {admin.username}</h1>
-        <button 
-          onClick={handleLogout}
-          className={styles.logoutButton}
-        >
-          Logout
-        </button>
+        <div>
+          <button 
+            onClick={() => router.push('/admin/change-password')} 
+            className={styles.changePasswordButton}
+          >
+            Change Password
+          </button>
+          <button 
+            onClick={handleLogout}
+            className={styles.logoutButton}
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );

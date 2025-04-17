@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './admin.module.css';
 import { AdminProvider } from '@/contexts/AdminContext';
+import { ToastContainer } from 'react-toastify';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -26,6 +27,18 @@ export default function AdminLayout({ children }) {
 
   return (
     <div className={styles.container}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <nav className={styles.sidebar}>
         <div className={styles.sidebarTitle}>Admin Panel</div>
         <ul className={styles.nav}>

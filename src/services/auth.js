@@ -44,3 +44,19 @@ export const checkAuth = async () => {
     return null;
   }
 }
+
+export const changePassword = async ({ oldPassword, newPassword }) => {
+  try {
+    const data = await apiFetching({
+      endpoint: `${BASE_ENDPOINT}/change-password`,
+      options: {
+        method: 'POST',
+        body: JSON.stringify({ oldPassword, newPassword }),
+        credentials: 'include',
+      },
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
