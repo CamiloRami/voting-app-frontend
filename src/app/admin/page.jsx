@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { checkAuth } from '@/services/auth';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import styles from './home.module.css';
 import { useAdmin } from '@/contexts/AdminContext';
 import Cookies from 'js-cookie';
@@ -47,10 +47,10 @@ export default function AdminHome() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Welcome: {admin.username}</h1>
-        <div>
+    <section className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Welcome, {admin.username}</h1>
+        <div className={styles.buttonsContainer}>
           <button 
             onClick={() => router.push('/admin/change-password')} 
             className={styles.changePasswordButton}
@@ -64,7 +64,7 @@ export default function AdminHome() {
             Logout
           </button>
         </div>
-      </div>
-    </div>
+      </header>
+    </section>
   );
 }
