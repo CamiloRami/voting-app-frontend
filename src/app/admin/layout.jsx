@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './admin.module.css';
+import { AdminProvider } from '@/contexts/AdminContext';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -35,7 +36,9 @@ export default function AdminLayout({ children }) {
         </ul>
       </nav>
       <main className={styles.mainContent}>
-        {children}
+        <AdminProvider>
+          {children}
+        </AdminProvider>
       </main>
     </div>
   );

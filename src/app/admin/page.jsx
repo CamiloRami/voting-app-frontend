@@ -4,9 +4,11 @@ import { useRouter } from 'next/navigation';
 import { checkAuth } from '@/services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import styles from './dashboard.module.css';
+import { useAdmin } from '@/contexts/AdminContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminDashboard() {
+  const { admin, login, logout } = useAdmin();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 

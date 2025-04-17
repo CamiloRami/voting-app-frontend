@@ -6,6 +6,15 @@ export const getCandidates = async () => {
     const data = await apiFetching({ endpoint: BASE_ENDPOINT });
     return data;
   } catch (error) {
-    throw new Error('Error fetching candidates:', error.message);
+    throw error;
+  }
+}
+
+export const getCandidateVotes = async () => {
+  try {
+    const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}/votes` });
+    return data;
+  } catch (error) {
+    throw error;
   }
 }
