@@ -3,14 +3,26 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { checkAuth } from '@/services/auth';
 import { ToastContainer, toast } from 'react-toastify';
-import styles from './dashboard.module.css';
+import styles from './home.module.css';
 import { useAdmin } from '@/contexts/AdminContext';
-import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
+import { logout } from '@/services/auth';
 
-export default function AdminDashboard() {
-  const { admin, login, logout } = useAdmin();
+export default function AdminHome() {
+  const { admin } = useAdmin();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleLogout = () => {
+    const response = logout();
+    if (!response) {
+      toast.error('Logout failed');
+      return;
+    }
+    Cookies.remove('admin');
+    toast.success('Logout successful');
+    router.push('/admin/login');
+  };
 
   useEffect(() => {
     const validateAuth = async () => {
@@ -37,20 +49,14 @@ export default function AdminDashboard() {
   return (
     <div className={styles.container}>
       <ToastContainer />
-      <h1 className={styles.title}>Admin Dashboard</h1>
-      <div className={styles.grid}>
-        <div className={styles.card}>
-          <h2 className={styles.cardTitle}>Vote Summary</h2>
-          {/* TODO: Implement vote summary statistics */}
-        </div>
-        <div className={styles.card}>
-          <h2 className={styles.cardTitle}>Featured Candidates</h2>
-          {/* TODO: Implement top candidates summary */}
-        </div>
-        <div className={styles.card}>
-          <h2 className={styles.cardTitle}>Recent Activity</h2>
-          {/* TODO: Implement recent activity feed */}
-        </div>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Welcome: {admin.username}</h1>
+        <button 
+          onClick={handleLogout}
+          className={styles.logoutButton}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

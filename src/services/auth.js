@@ -12,7 +12,22 @@ export const login = async ({ email, password }) => {
     });
     return data;
   } catch (error) {
-    throw new Error('Error during login:', error.message);
+    throw error;
+  }
+}
+
+export const logout = async () => {
+  try {
+    const data = await apiFetching({
+      endpoint: `${BASE_ENDPOINT}/logout`,
+      options: {
+        method: 'POST',
+        credentials: 'include',
+      },
+    });
+    return data;
+  } catch (error) {
+    throw error;
   }
 }
 

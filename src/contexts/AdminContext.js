@@ -1,4 +1,5 @@
 import { getVotes } from '@/services/vote';
+import Cookies from 'js-cookie';
 import useCandidateVotes from '@/hooks/useCandidateVotes';
 import { createContext, useContext, useState, useEffect } from 'react';
 
@@ -13,11 +14,21 @@ const useAdmin = () => {
 }
 
 const AdminProvider = ({ children }) => {
+  const [admin, setAdmin] = useState(null);
   const [votes, setVotes] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [ [ mostVotedCandidate ], candidateLoading, candidateError ] = useCandidateVotes();
   
+  useEffect(() => {
+    const storedAdmin = Cookies.get('admin');
+    if (storedAdmin) {
+      setAdmin(JSON.parse(storedAdmin));
+    } else {
+      setAdmin(null);
+    }
+  }, []);
+
   useEffect(() => {
     const fetchVotes = async () => {
       try {
@@ -35,7 +46,7 @@ const AdminProvider = ({ children }) => {
   , []);
 
   return (
-    <AdminContext.Provider value={{ votes, loading, error, mostVotedCandidate, candidateLoading, candidateError }}>
+    <AdminContext.Provider value={{ votes, admin, loading, error, mostVotedCandidate, candidateLoading, candidateError }}>
       {children}
     </AdminContext.Provider>
   );

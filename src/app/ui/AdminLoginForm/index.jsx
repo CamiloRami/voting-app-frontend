@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie'
 import styles from './AdminLoginForm.module.css';
 import { login } from '@/services/auth';
 import { toast } from 'react-toastify';
@@ -20,6 +21,10 @@ export default function AdminLoginForm() {
 
       const response = await login({ email, password });
       if (response) {
+        Cookies.set('admin', JSON.stringify({
+          username: `${response.name} ${response.last_name}`,
+          email: response.email,
+        }));
         toast.success('Login successful!');
         router.push('/admin');
       }
