@@ -25,7 +25,7 @@ export default function VoteForm() {
       const voterId = voter.voter_id;
 
       const selectedCandidate = candidates.find(
-        (candidate) => `${candidate.name} ${candidate.lastName}` === candidateValue
+        (candidate) => `${candidate.name} ${candidate.last_name}` === candidateValue
       );
       if (!selectedCandidate) {
         toast.error('Please select a valid candidate.');
@@ -82,7 +82,7 @@ export default function VoteForm() {
           {!candidateLoading &&
             !candidateError &&
             candidates.map((candidate) => (
-              <option key={candidate.voter_id} value={`${candidate.name} ${candidate.lastName}`} />
+              <option key={candidate.voter_id} value={`${candidate.name} ${candidate.last_name}`} />
             ))}
         </datalist>
       </label>
