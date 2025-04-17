@@ -40,6 +40,10 @@ export default function VoteForm() {
       }
       toast.success('Vote submitted successfully!');
     } catch (error) {
+      if (error.message) {
+        toast.error(error.message);
+        return;
+      }
       toast.error('An error occurred while submitting your vote.');
     }
   }

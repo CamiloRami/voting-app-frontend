@@ -15,6 +15,9 @@ export const getVoter = async (voterDocument) => {
     const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}/${voterDocument}` });
     return data;
   } catch (error) {
+    if (error.status === 404) {
+      return null;
+    }
     throw new Error('Error fetching voter:', error.message);
   }
 }
