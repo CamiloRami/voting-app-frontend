@@ -80,12 +80,3 @@
   color: var(--foreground);
   margin: 0;
 }
-
-@media (max-width: 768px) {
-  .table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-  }
-}
