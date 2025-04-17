@@ -21,3 +21,18 @@ export const getVoter = async (voterDocument) => {
     throw new Error('Error fetching voter:', error.message);
   }
 }
+
+export const createVoter = async ({ document, name, lastName, dateOfBirth, address, phone, sex, isCandidate }) => {
+  try {
+    const data = await apiFetching({
+      endpoint: BASE_ENDPOINT,
+      options: {
+        method: 'POST',
+        body: JSON.stringify({ document, name, lastName, dateOfBirth, address, phone, sex, isCandidate })
+      }
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Error creating voter:', error.message);
+  }
+}
