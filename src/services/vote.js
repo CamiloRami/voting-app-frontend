@@ -18,3 +18,12 @@ export const castVote = async ({voterId, candidateId}) => {
     throw new Error('Error casting vote:', error.message);
   }
 }
+
+export const getVotes = async () => {
+  try {
+    const data = await apiFetching({ endpoint: BASE_ENDPOINT });
+    return data;
+  } catch (error) {
+    throw new Error('Error fetching votes:', error.message);
+  }
+}
