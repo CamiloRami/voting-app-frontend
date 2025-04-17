@@ -21,7 +21,7 @@ export const castVote = async ({voterId, candidateId}) => {
 
 export const getVotes = async () => {
   try {
-    const data = await apiFetching({ endpoint: BASE_ENDPOINT });
+    const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}/detailed` });
     return data;
   } catch (error) {
     throw error;

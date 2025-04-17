@@ -1,4 +1,5 @@
 import { getVotes } from '@/services/vote';
+import useCandidateVotes from '@/hooks/useCandidateVotes';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const AdminContext = createContext();
@@ -15,8 +16,8 @@ const AdminProvider = ({ children }) => {
   const [votes, setVotes] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [ [ mostVotedCandidate ], candidateLoading, candidateError ] = useCandidateVotes();
   
-  console.log('AdminProvider votes:', votes);
   useEffect(() => {
     const fetchVotes = async () => {
       try {
@@ -34,7 +35,7 @@ const AdminProvider = ({ children }) => {
   , []);
 
   return (
-    <AdminContext.Provider value={{ votes, loading, error }}>
+    <AdminContext.Provider value={{ votes, loading, error, mostVotedCandidate, candidateLoading, candidateError }}>
       {children}
     </AdminContext.Provider>
   );
