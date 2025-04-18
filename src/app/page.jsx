@@ -20,9 +20,6 @@ export default function Home() {
       <main className={styles.main}>
         <VoteForm />
       </main>
-      <footer className={styles.footer}>
-        // TODO
-      </footer>
     </div>
   );
 }
