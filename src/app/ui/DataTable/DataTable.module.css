@@ -1,0 +1,91 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.table th {
+  background-color: var(--input-background);
+  color: var(--foreground);
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+tr.clickable {
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+tr.clickable:hover {
+  background-color: var(--input-background);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.expandedRow {
+  background-color: var(--background);
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.expandedRow dl {
+  display: grid;
+  grid-template-columns: minmax(150px, auto) 1fr;
+  gap: 1rem;
+  margin: 0;
+}
+
+.expandedRow dt {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.expandedRow dd {
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+}
+
+.loading {
+  text-align: center;
+  color: var(--foreground);
+  padding: 2rem;
+}
+
+.error {
+  text-align: center;
+  color: var(--error);
+  padding: 2rem;
+}
+
+.empty {
+  text-align: center;
+  color: var(--foreground);
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .expandedRow dl {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .expandedRow dt {
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+}

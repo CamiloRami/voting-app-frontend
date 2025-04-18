@@ -99,6 +99,7 @@
 
   @media (max-width: 768px) {
     .mainContent {
+      padding-top: 4rem;
       padding-left: 1rem;
       padding-right: 1rem;
     }
