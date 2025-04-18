@@ -17,24 +17,20 @@ export const apiFetching = async ({ endpoint, options = {} }) => {
     }
   }
 
-  try {
-    const response = await fetch(`${API_URL}${endpoint}`, {
-      ...defaultOptions,
-      ...options,
-      headers: {
-        ...defaultOptions.headers,
-        ...options.headers
-      }
-    })
-
-    const data = await response.json().catch(() => ({}))
-
-    if (!response.ok) {
-      throw new ApiError(data.error || 'An error occurred', response.status)
+  const response = await fetch(`${API_URL}${endpoint}`, {
+    ...defaultOptions,
+    ...options,
+    headers: {
+      ...defaultOptions.headers,
+      ...options.headers
     }
+  })
 
-    return data
-  } catch (error) {
-    throw error
+  const data = await response.json().catch(() => ({}))
+
+  if (!response.ok) {
+    throw new ApiError(data.error || 'An error occurred', response.status)
   }
+
+  return data
 }

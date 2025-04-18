@@ -2,33 +2,23 @@ import { apiFetching } from './apiFetching'
 const BASE_ENDPOINT = 'auth'
 
 export const login = async ({ email, password }) => {
-  try {
-    const data = await apiFetching({
-      endpoint: `${BASE_ENDPOINT}/login`,
-      options: {
-        method: 'POST',
-        body: JSON.stringify({ email, password })
-      }
-    })
-    return data
-  } catch (error) {
-    throw error
-  }
+  return await apiFetching({
+    endpoint: `${BASE_ENDPOINT}/login`,
+    options: {
+      method: 'POST',
+      body: JSON.stringify({ email, password })
+    }
+  })
 }
 
 export const logout = async () => {
-  try {
-    const data = await apiFetching({
-      endpoint: `${BASE_ENDPOINT}/logout`,
-      options: {
-        method: 'POST',
-        credentials: 'include'
-      }
-    })
-    return data
-  } catch (error) {
-    throw error
-  }
+  return await apiFetching({
+    endpoint: `${BASE_ENDPOINT}/logout`,
+    options: {
+      method: 'POST',
+      credentials: 'include'
+    }
+  })
 }
 
 export const checkAuth = async () => {
@@ -46,17 +36,12 @@ export const checkAuth = async () => {
 }
 
 export const changePassword = async ({ oldPassword, newPassword }) => {
-  try {
-    const data = await apiFetching({
-      endpoint: `${BASE_ENDPOINT}/change-password`,
-      options: {
-        method: 'POST',
-        body: JSON.stringify({ oldPassword, newPassword }),
-        credentials: 'include'
-      }
-    })
-    return data
-  } catch (error) {
-    throw error
-  }
+  return await apiFetching({
+    endpoint: `${BASE_ENDPOINT}/change-password`,
+    options: {
+      method: 'POST',
+      body: JSON.stringify({ oldPassword, newPassword }),
+      credentials: 'include'
+    }
+  })
 }
