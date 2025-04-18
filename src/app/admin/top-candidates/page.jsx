@@ -9,7 +9,7 @@ export default function TopCandidates() {
   const columns = [
     { key: 'candidate_id', header: 'Candidate ID' },
     { 
-      key: 'candidate_id', 
+      key: 'candidate_name', 
       header: 'Candidate Name',
       render: (row) => `${row.candidate_name} ${row.candidate_last_name}`
     },
@@ -23,7 +23,9 @@ export default function TopCandidates() {
         <DataTable
           clickable={false}
           columns={columns}
-          data={candidateVotes}
+          data={
+            candidateVotes?.map(candidate => ({ ...candidate, id: candidate.candidate_id })) || []
+          }
           loading={loading}
           error={error?.message}
         />

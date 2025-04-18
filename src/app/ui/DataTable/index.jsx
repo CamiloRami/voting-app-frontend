@@ -36,8 +36,8 @@ export default function DataTable({
         {data.map((row) => (
           <>
             <tr key={row.id} onClick={() => onRowClick?.(row.id)} className={clickable ? styles.clickable : ''}>
-              {columns.map((column) => (
-                <td key={`${row.id}-${column.key}`}>
+              {columns.map((column, index) => (
+                <td key={`${row.id}-${column.key}-${index}`}>
                   {column.render ? column.render(row) : row[column.key]}
                 </td>
               ))}
