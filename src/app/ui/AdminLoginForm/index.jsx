@@ -1,39 +1,39 @@
-'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+'use client'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
-import styles from './AdminLoginForm.module.css';
-import { login } from '@/services/auth';
-import { toast } from 'react-toastify';
+import styles from './AdminLoginForm.module.css'
+import { login } from '@/services/auth'
+import { toast } from 'react-toastify'
 
-export default function AdminLoginForm() {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+export default function AdminLoginForm () {
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
+    event.preventDefault()
+    setIsLoading(true)
 
     try {
-      const formData = new FormData(event.target);
-      const email = formData.get('email');
-      const password = formData.get('password');
+      const formData = new FormData(event.target)
+      const email = formData.get('email')
+      const password = formData.get('password')
 
-      const response = await login({ email, password });
+      const response = await login({ email, password })
       if (response) {
         Cookies.set('admin', JSON.stringify({
           username: `${response.name} ${response.last_name}`,
-          email: response.email,
-        }));
-        toast.success('Login successful!');
-        router.push('/admin');
+          email: response.email
+        }))
+        toast.success('Login successful!')
+        router.push('/admin')
       }
     } catch (error) {
-      toast.error('Invalid credentials. Please try again.');
+      toast.error('Invalid credentials. Please try again.')
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -62,5 +62,5 @@ export default function AdminLoginForm() {
         {isLoading ? 'Logging in...' : 'Login'}
       </button>
     </form>
-  );
+  )
 }

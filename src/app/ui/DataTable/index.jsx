@@ -1,7 +1,7 @@
-'use client';
-import styles from './DataTable.module.css';
+'use client'
+import styles from './DataTable.module.css'
 
-export default function DataTable({
+export default function DataTable ({
   columns,
   data,
   loading,
@@ -9,18 +9,18 @@ export default function DataTable({
   expandedRowId,
   onRowClick,
   renderExpandedRow,
-  clickable = true,
+  clickable = true
 }) {
   if (loading) {
-    return <div className={styles.loading}>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>
   }
 
   if (error) {
-    return <div className={styles.error}>{error}</div>;
+    return <div className={styles.error}>{error}</div>
   }
 
   if (!data || data.length === 0) {
-    return <div className={styles.empty}>No data available.</div>;
+    return <div className={styles.empty}>No data available.</div>
   }
 
   return (
@@ -53,5 +53,5 @@ export default function DataTable({
         ))}
       </tbody>
     </table>
-  );
+  )
 }

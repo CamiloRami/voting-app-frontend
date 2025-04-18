@@ -1,8 +1,8 @@
-"use client";
-import styles from "./page.module.css";
-import VoteForm from "./ui/VoteForm";
-import { ToastContainer } from "react-toastify";
-export default function Home() {
+'use client'
+import styles from './page.module.css'
+import VoteForm from './ui/VoteForm'
+import { ToastContainer } from 'react-toastify'
+export default function Home () {
   return (
     <div className={styles.page}>
       <ToastContainer
@@ -21,5 +21,5 @@ export default function Home() {
         <VoteForm />
       </main>
     </div>
-  );
+  )
 }

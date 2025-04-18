@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
-import { getCandidates } from "@/services/candidates";
+import { useState, useEffect } from 'react'
+import { getCandidates } from '@/services/candidates'
 
-export default function useCandidates({offset = 0, limit = 10 } = {}) {
-  const [candidates, setCandidates] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function useCandidates ({ offset = 0, limit = 10 } = {}) {
+  const [candidates, setCandidates] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
-        const response = await getCandidates({ offset, limit });
-        if (!response || !response.candidates ||response.candidates.length === 0) {
-          throw new Error("No candidates found");
+        const response = await getCandidates({ offset, limit })
+        if (!response || !response.candidates || response.candidates.length === 0) {
+          throw new Error('No candidates found')
         }
-        setCandidates(response.candidates);
+        setCandidates(response.candidates)
       } catch (err) {
-        setError(err);
+        setError(err)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchCandidates();
-  }, [offset, limit]);
+    fetchCandidates()
+  }, [offset, limit])
 
-  return {candidates, loading, error};
+  return { candidates, loading, error }
 }

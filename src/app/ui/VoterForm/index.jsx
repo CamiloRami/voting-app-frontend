@@ -1,17 +1,17 @@
-import styles from './VoterForm.module.css';
+import styles from './VoterForm.module.css'
 
 const FormField = ({ label, ...props }) => (
   <label className={styles.label}>
     {label}:
     <input className={styles.input} {...props} />
   </label>
-);
+)
 
-export default function VoterForm({ onSubmit, isLoading }) {
+export default function VoterForm ({ onSubmit, isLoading }) {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <h1 className={styles.title}>Register New Voter</h1>
-      
+
       <FormField
         label="Document"
         name="document"
@@ -91,13 +91,13 @@ export default function VoterForm({ onSubmit, isLoading }) {
         </select>
       </label>
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         className={styles.button}
         disabled={isLoading}
       >
         {isLoading ? 'Creating...' : 'Create Voter'}
       </button>
     </form>
-  );
+  )
 }

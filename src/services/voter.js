@@ -1,24 +1,24 @@
-import { apiFetching } from "./apiFetching";
-const BASE_ENDPOINT = 'voters';
+import { apiFetching } from './apiFetching'
+const BASE_ENDPOINT = 'voters'
 
-export const getVoters = async ({offset = 0, limit = 10 } = {}) => {
+export const getVoters = async ({ offset = 0, limit = 10 } = {}) => {
   try {
-    const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}?offset=${offset}&limit=${limit}` });
-    return data;
+    const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}?offset=${offset}&limit=${limit}` })
+    return data
   } catch (error) {
-    throw new Error('Error fetching voters:', error.message);
+    throw new Error('Error fetching voters:', error.message)
   }
 }
 
 export const getVoter = async (voterDocument) => {
   try {
-    const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}/${voterDocument}` });
-    return data;
+    const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}/${voterDocument}` })
+    return data
   } catch (error) {
     if (error.status === 404) {
-      return null;
+      return null
     }
-    throw new Error('Error fetching voter:', error.message);
+    throw new Error('Error fetching voter:', error.message)
   }
 }
 
@@ -30,9 +30,9 @@ export const createVoter = async ({ document, name, lastName, dateOfBirth, addre
         method: 'POST',
         body: JSON.stringify({ document, name, lastName, dateOfBirth, address, phone, sex, isCandidate })
       }
-    });
-    return data;
+    })
+    return data
   } catch (error) {
-    throw new Error('Error creating voter:', error.message);
+    throw new Error('Error creating voter:', error.message)
   }
 }

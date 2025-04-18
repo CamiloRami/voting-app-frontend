@@ -1,30 +1,30 @@
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import styles from './admin.module.css';
-import { AdminProvider } from '@/contexts/AdminContext';
-import { ToastContainer } from 'react-toastify';
-import { FiMenu, FiX } from 'react-icons/fi';
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+import styles from './admin.module.css'
+import { AdminProvider } from '@/contexts/AdminContext'
+import { ToastContainer } from 'react-toastify'
+import { FiMenu, FiX } from 'react-icons/fi'
 
-export default function AdminLayout({ children }) {
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function AdminLayout ({ children }) {
+  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuItems = [
     { href: '/admin', label: 'Home' },
     { href: '/admin/top-candidates', label: 'Most Voted Candidates' },
     { href: '/admin/votes', label: 'List Submitted Votes' },
-    { href: '/admin/new-voter', label: 'Add New Voter' },
-  ];
+    { href: '/admin/new-voter', label: 'Add New Voter' }
+  ]
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+    setIsMenuOpen(false)
+  }
 
   if (pathname === '/admin/login') {
     return (
@@ -33,7 +33,7 @@ export default function AdminLayout({ children }) {
           {children}
         </main>
       </div>
-    );
+    )
   }
 
   return (
@@ -50,10 +50,10 @@ export default function AdminLayout({ children }) {
         pauseOnHover
         theme="light"
       />
-      <button 
+      <button
         className={`${styles.menuButton} ${isMenuOpen ? styles.open : ''}`}
         onClick={toggleMenu}
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
       >
         {isMenuOpen ? <FiX /> : <FiMenu />}
       </button>
@@ -64,7 +64,7 @@ export default function AdminLayout({ children }) {
         <ul className={styles.nav}>
           {menuItems.map((item) => (
             <li key={item.href}>
-              <Link 
+              <Link
                 href={item.href}
                 className={`${styles.navLink} ${
                   pathname === item.href ? styles.activeLink : ''
@@ -83,5 +83,5 @@ export default function AdminLayout({ children }) {
         </AdminProvider>
       </main>
     </div>
-  );
+  )
 }

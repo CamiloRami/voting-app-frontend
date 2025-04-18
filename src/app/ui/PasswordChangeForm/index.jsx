@@ -1,40 +1,40 @@
-import { useState } from 'react';
-import styles from '../AdminLoginForm/AdminLoginForm.module.css';
-import { changePassword } from '@/services/auth';
-import { toast } from 'react-toastify';
+import { useState } from 'react'
+import styles from '../AdminLoginForm/AdminLoginForm.module.css'
+import { changePassword } from '@/services/auth'
+import { toast } from 'react-toastify'
 
-export default function PasswordChangeForm({ onSuccess }) {
-  const [isLoading, setIsLoading] = useState(false);
+export default function PasswordChangeForm ({ onSuccess }) {
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
+    event.preventDefault()
+    setIsLoading(true)
 
     try {
-      const formData = new FormData(event.target);
-      const oldPassword = formData.get('oldPassword');
-      const newPassword = formData.get('newPassword');
-      const confirmPassword = formData.get('confirmPassword');
+      const formData = new FormData(event.target)
+      const oldPassword = formData.get('oldPassword')
+      const newPassword = formData.get('newPassword')
+      const confirmPassword = formData.get('confirmPassword')
 
       if (newPassword !== confirmPassword) {
-        toast.error('Passwords do not match');
-        return;
+        toast.error('Passwords do not match')
+        return
       }
 
-      await changePassword({ oldPassword, newPassword });
-      toast.success('Password changed successfully!');
-      onSuccess();
+      await changePassword({ oldPassword, newPassword })
+      toast.success('Password changed successfully!')
+      onSuccess()
     } catch (error) {
-      toast.error('Error changing password. Please try again.');
+      toast.error('Error changing password. Please try again.')
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <h1 className={styles.title}>Change Password</h1>
-      
+
       <label className={styles.label}>
         Current Password:
         <input
@@ -72,5 +72,5 @@ export default function PasswordChangeForm({ onSuccess }) {
         {isLoading ? 'Cambiando...' : 'Cambiar Contraseña'}
       </button>
     </form>
-  );
+  )
 }

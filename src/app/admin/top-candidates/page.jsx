@@ -1,21 +1,21 @@
-'use client';
-import styles from '../admin-pages.module.css';
-import useCandidateVotes from '@/hooks/useCandidateVotes';
-import DataTable from '@/app/ui/DataTable';
-import { SlArrowDown } from "react-icons/sl";
+'use client'
+import styles from '../admin-pages.module.css'
+import useCandidateVotes from '@/hooks/useCandidateVotes'
+import DataTable from '@/app/ui/DataTable'
+import { SlArrowDown } from 'react-icons/sl'
 
-export default function TopCandidates() {
-  const { candidateVotesData, handleNextStep, loading, error } = useCandidateVotes();
-  
+export default function TopCandidates () {
+  const { candidateVotesData, handleNextStep, loading, error } = useCandidateVotes()
+
   const columns = [
     { key: 'candidate_id', header: 'Candidate ID' },
-    { 
-      key: 'candidate_name', 
+    {
+      key: 'candidate_name',
       header: 'Candidate Name',
       render: (row) => `${row.candidate_name} ${row.candidate_last_name}`
     },
-    { key: 'vote_count', header: 'Number of Votes' },
-  ];
+    { key: 'vote_count', header: 'Number of Votes' }
+  ]
 
   return (
     <div className={styles.container}>
@@ -34,9 +34,9 @@ export default function TopCandidates() {
           <button className={styles.nextButton} onClick={handleNextStep}>
             <SlArrowDown />
           </button>
-          )
+        )
         }
       </div>
     </div>
-  );
+  )
 }

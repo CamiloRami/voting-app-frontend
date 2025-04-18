@@ -1,13 +1,13 @@
-'use client';
-import styles from '../admin-pages.module.css';
-import { useAdmin } from '@/contexts/AdminContext';
-import { useState } from 'react';
-import DataTable from '@/app/ui/DataTable';
-import { SlArrowDown } from "react-icons/sl";
+'use client'
+import styles from '../admin-pages.module.css'
+import { useAdmin } from '@/contexts/AdminContext'
+import { useState } from 'react'
+import DataTable from '@/app/ui/DataTable'
+import { SlArrowDown } from 'react-icons/sl'
 
-export default function VotesList() {
-  const { votesData, handleNextStep,loading, error, mostVotedCandidate } = useAdmin();
-  const [expandedVoteId, setExpandedVoteId] = useState(null);
+export default function VotesList () {
+  const { votesData, handleNextStep, loading, error, mostVotedCandidate } = useAdmin()
+  const [expandedVoteId, setExpandedVoteId] = useState(null)
 
   const columns = [
     { key: 'vote_id', header: 'Vote ID' },
@@ -21,7 +21,7 @@ export default function VotesList() {
       header: 'Date',
       render: (row) => new Date(row.date).toLocaleString()
     }
-  ];
+  ]
 
   const renderExpandedRow = (vote) => (
     <dl className={styles.voteDetails}>
@@ -38,7 +38,7 @@ export default function VotesList() {
       <dt>Voter Sex</dt>
       <dd>{vote.voter_sex}</dd>
     </dl>
-  );
+  )
 
   return (
     <div className={styles.container}>
@@ -64,9 +64,9 @@ export default function VotesList() {
           <button className={styles.nextButton} onClick={handleNextStep}>
             <SlArrowDown />
           </button>
-          )
+        )
         }
       </div>
     </div>
-  );
+  )
 }
