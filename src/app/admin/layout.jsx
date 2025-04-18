@@ -29,6 +29,18 @@ export default function AdminLayout ({ children }) {
   if (pathname === '/admin/login') {
     return (
       <div className={styles.container}>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <main className={styles.mainContent}>
           {children}
         </main>
