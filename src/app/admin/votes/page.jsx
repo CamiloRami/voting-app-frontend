@@ -3,9 +3,10 @@ import styles from '../admin-pages.module.css';
 import { useAdmin } from '@/contexts/AdminContext';
 import { useState } from 'react';
 import DataTable from '@/app/ui/DataTable';
+import { SlArrowDown } from "react-icons/sl";
 
 export default function VotesList() {
-  const { votes, loading, error, mostVotedCandidate } = useAdmin();
+  const { votesData, handleNextStep,loading, error, mostVotedCandidate } = useAdmin();
   const [expandedVoteId, setExpandedVoteId] = useState(null);
 
   const columns = [
@@ -51,7 +52,7 @@ export default function VotesList() {
         )}
         <DataTable
           columns={columns}
-          data={votes?.map(vote => ({ ...vote, id: vote.vote_id })) || []}
+          data={votesData?.votes?.map(vote => ({ ...vote, id: vote.vote_id })) || []}
           loading={loading}
           error={error?.message}
           expandedRowId={expandedVoteId}
@@ -59,6 +60,12 @@ export default function VotesList() {
           renderExpandedRow={renderExpandedRow}
           clickable={true}
         />
+        { votesData?.totalVotes > votesData?.votes?.length && (
+          <button className={styles.nextButton} onClick={handleNextStep}>
+            <SlArrowDown />
+          </button>
+          )
+        }
       </div>
     </div>
   );

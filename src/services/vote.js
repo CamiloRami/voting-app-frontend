@@ -19,9 +19,11 @@ export const castVote = async ({voterId, candidateId}) => {
   }
 }
 
-export const getVotes = async () => {
+export const getVotes = async ({offset = 0, limit = 10 } = {}) => {
   try {
-    const data = await apiFetching({ endpoint: `${BASE_ENDPOINT}/detailed` });
+    const data = await apiFetching({ 
+      endpoint: `${BASE_ENDPOINT}/detailed?offset=${offset}&limit=${limit}` 
+    });
     return data;
   } catch (error) {
     throw error;

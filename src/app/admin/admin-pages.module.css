@@ -80,3 +80,10 @@
   color: var(--foreground);
   margin: 0;
 }
+
+.nextButton {
+  cursor: pointer;
+  display: block;
+  margin: 1rem auto 0;
+  padding: .2rem 1rem;
+}

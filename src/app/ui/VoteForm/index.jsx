@@ -6,7 +6,7 @@ import { castVote } from '@/services/vote';
 import { toast } from 'react-toastify';
 
 export default function VoteForm() {
-  const [ candidates, candidateLoading, candidateError ] = useCandidates();
+  const { candidates, loading, error } = useCandidates({limit: 100});
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -76,11 +76,11 @@ export default function VoteForm() {
           list="candidate-list"
           placeholder="Select a candidate"
           autoComplete="off"
-          disabled={candidateLoading || candidateError}
+          disabled={loading || error}
         />
         <datalist id="candidate-list">
-          {!candidateLoading &&
-            !candidateError &&
+          {!loading &&
+            !error &&
             candidates.map((candidate) => (
               <option key={candidate.voter_id} value={`${candidate.name} ${candidate.last_name}`} />
             ))}
